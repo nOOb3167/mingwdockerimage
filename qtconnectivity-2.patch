@@ -1,0 +1,23 @@
+From 02a8658ebd45ea2cd562312cb9b5a2d05bd3e7a4 Mon Sep 17 00:00:00 2001
+From: nOOb3167 <nOOb3167@gmail.com>
+Date: Sat, 21 Oct 2023 18:26:43 +0200
+Subject: [PATCH] stuff
+
+stuff
+
+diff --git a/src/bluetooth/bluetooth.pro b/src/bluetooth/bluetooth.pro
+index 9f42b34e..294ea36b 100644
+--- a/src/bluetooth/bluetooth.pro
++++ b/src/bluetooth/bluetooth.pro
+@@ -2,6 +2,11 @@ TARGET = QtBluetooth
+ QT = core core-private
+ DEFINES += QT_NO_FOREACH
+
++QMAKE_MOC_OPTIONS += -D__cpp_lib_coroutine=201902L
++CONFIG += c++20
++QMAKE_CXXFLAGS += -fcoroutines -std=c++20 -D__cpp_lib_coroutine=201902L
++QMAKE_LFLAGS += -fcoroutines
++
+ QMAKE_DOCS = $$PWD/doc/qtbluetooth.qdocconf
+ OTHER_FILES += doc/src/*.qdoc   # show .qdoc files in Qt Creator
+ 

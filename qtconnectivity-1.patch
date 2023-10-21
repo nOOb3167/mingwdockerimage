@@ -1,0 +1,30 @@
+This file is part of MXE. See LICENSE.md for licensing information.
+
+From f109f552ac82434169bc8c3d4e72eb44614182fa Mon Sep 17 00:00:00 2001
+From: nOOb3167 <nOOb3167@gmail.com>
+Date: Sat, 21 Oct 2023 14:40:30 +0200
+Subject: [PATCH] stuff
+
+stuff
+
+diff --git a/src/bluetooth/configure.json b/src/bluetooth/configure.json
+index 3bd95903..10a208a3 100644
+--- a/src/bluetooth/configure.json
++++ b/src/bluetooth/configure.json
+@@ -67,12 +67,14 @@
+         },
+         "winrt_bt": {
+             "label": "WinRT Bluetooth API (desktop & UWP)",
+-            "condition": "config.win32 && !features.native-win32-bluetooth && tests.winrt_bt",
++            "Zcondition": "config.win32 && !features.native-win32-bluetooth && tests.winrt_bt",
++			"enable": true,
+             "output": [ "privateFeature" ]
+         },
+         "winrt_btle_no_pairing": {
+             "label": "WinRT advanced bluetooth low energy API (desktop & UWP)",
+-            "condition": "config.win32 && features.winrt_bt && tests.winrt_btle_no_pairing",
++            "Zcondition": "config.win32 && features.winrt_bt && tests.winrt_btle_no_pairing",
++			"enable": true,
+             "output": [ "privateFeature" ]
+         }
+     },
