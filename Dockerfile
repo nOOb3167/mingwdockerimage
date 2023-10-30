@@ -50,21 +50,24 @@ RUN apt-get update && \
         wget \
         xz-utils \
         lzip \
-        scons
+        scons \
+		vim \
+		less
 
 FROM build0 as build1
 
 RUN mkdir -p /win
-RUN cd /win && git clone https://github.com/mxe/mxe.git && cd mxe && git checkout ${_ver} && sed -i "s|DEFAULT_MAX_JOBS := 6|DEFAULT_MAX_JOBS := 12|" Makefile;
+RUN cd /win && git clone https://github.com/mxe/mxe.git && cd mxe && git checkout ${_ver} && sed -i "s|DEFAULT_MAX_JOBS := 6|DEFAULT_MAX_JOBS := 6|" Makefile;
 
 FROM build1 as build2
 
 COPY settings.mk /win/mxe/settings.mk
-RUN set -o pipefail ; cd /win/mxe && make --jobs=12 JOBS=12 download 2>&1 | tee mxe-build.log
+RUN cd /win/mxe && make --jobs=6 JOBS=6 download 2>&1 | tee mxe-build.log
 
 FROM build2 as build3
 
-RUN set -o pipefail ; cd /win/mxe && make --jobs=12 JOBS=12 2>&1 | tee -a mxe-build.log
+COPY qtwebkit-2.patch /win/mxe/src/qtwebkit-2.patch
+RUN cd /win/mxe && make --jobs=6 JOBS=6 2>&1 | tee -a mxe-build.log
 
 FROM build3 as build4
 
@@ -73,4 +76,4 @@ COPY qtconnectivity-2.patch /win/mxe/src/qtconnectivity-2.patch
 COPY lower_copy.sh /win/mxe/
 COPY winrt /win/mxe/winrt
 RUN cd /win/mxe/winrt && /win/mxe/lower_copy.sh && mkdir /win/mxe/winrt_ && cp -r /win/mxe/winrt /win/mxe/winrt_ && mv /win/mxe/winrt_/winrt /win/mxe/winrt/ && cp -r /win/mxe/winrt/* /win/mxe/usr/x86_64-w64-mingw32.shared/qt5/include
-RUN touch /win/mxe/src/qtconnectivity.mk && cd /win/mxe && make --jobs=12 JOBS=12 2>&1 | tee mxe-build-2.log
+RUN touch /win/mxe/src/qtconnectivity.mk && cd /win/mxe && make --jobs=6 JOBS=6 2>&1 | tee mxe-build-2.log

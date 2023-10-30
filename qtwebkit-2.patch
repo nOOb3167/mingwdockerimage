@@ -1,0 +1,21 @@
+From 02a8658ebd45ea2cd562312cb9b5a2d05bd3e7a4 Mon Sep 17 00:00:00 2001
+From: nOOb3167 <nOOb3167@gmail.com>
+Date: Sat, 21 Oct 2023 18:26:43 +0200
+Subject: [PATCH] stuff
+
+this patch is already in qtwebkit 5.212 but seems not to have landed yet in mxe
+https://github.com/qtwebkit/qtwebkit/blob/qtwebkit-5.212/Source/ThirdParty/ANGLE/src/common/mathutil.h
+https://github.com/qtwebkit/qtwebkit/commit/d1c854e2a214b5fad3c2e9906d6c2ba778d0a245
+
+diff --git a/Source/ThirdParty/ANGLE/src/common/mathutil.h b/Source/ThirdParty/ANGLE/src/common/mathutil.h
+index 9f42b34e..294ea36b 100644
+--- a/Source/ThirdParty/ANGLE/src/common/mathutil.h
++++ b/Source/ThirdParty/ANGLE/src/common/mathutil.h
+@@ -15,6 +15,7 @@
+ #include <limits>
+ #include <algorithm>
+ #include <string.h>
++#include <stdint.h>
+ #include <stdlib.h>
+
+ namespace gl
